@@ -1,0 +1,26 @@
+Trying to install ml-agents and pytorch with Python3.10.12 within WSL Ubuntu in order to train RL model within Unity
+
+- Install git: sudo apt-get install git
+- Follow these steps: https://tsdat.readthedocs.io/en/latest/tutorials/setup_wsl/#using-a-wsl-environment-in-vscode to set up VS Code with WSL
+- Then follow these: https://github.com/Unity-Technologies/ml-agents/blob/release_21_docs/docs/Installation.md to set up ml-agents
+=> Actually worked!!!
+
+- Check WSL version in Windows Powershell: wsl -l -v
+- Check WSL Kernel version in Windows Powershell: wsl cat /proc/version
+# Or check both above with: wsl --version
+# In case needed, run this to update: wsl --shutdown => wsl --update
+# In case to revert to previous version: wsl --update --rollback
+# Check GPU hardware type: sudo lshw -C display
+
+- Install nvidia-driver for base WINDOWS system NOT IN WSL
+- Run this to show monitoring snapshot: nvidia-smi
+- Install CUDA Toolkit and strictly follow instruction for WSL Ubuntu on: https://docs.nvidia.com/cuda/wsl-user-guide/index.html
+- Remove old GPG key: sudo apt-key del 7fa2af80
+# Especially this: https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0&target_type=deb_local
+# To install new key: sudo cp /var/cuda-repo-wsl-ubuntu-12-3-local/cuda-E7B9884F-keyring.gpg /usr/share/keyrings/
+=> Basically, we want to install CUDA toolkit in WSL only, but not the driver bcs it will override the main system's driver which is Windows
+
+- To train and observe Training over Tensorboard, follow instruction on this link: https://unity-technologies.github.io/ml-agents/Training-ML-Agents/
+- Here we run inside the Hummingbird-training-folder: tensorboard --logdir results --port 6006
++ It triggered ImportError: no "pkg_resources" found / ModuleNotFoundError: No module named 'pkg_resources' when it tried to import pkg_resourses
+- However everything else seemed to work fine.

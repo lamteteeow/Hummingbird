@@ -11,7 +11,7 @@
 /[Uu]ser[Ss]ettings/
 
 # Downloads is directory specific to certain asset store downloads.
-/[Dd]ownloads/
+[Dd]ownloads/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
